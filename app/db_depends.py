@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from app1.database import SessionLocal
+from app.database import SessionLocal
 
 
 async def get_db():
@@ -15,7 +15,7 @@ async def get_db():
 
 from collections.abc import AsyncGenerator
 from sqlalchemy.ext.asyncio import AsyncSession
-from app1.database import async_session_maker
+from app.database import async_session_maker
 
 async def get_async_db() -> AsyncGenerator[AsyncSession, None]:
     """

@@ -3,11 +3,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi.security import OAuth2PasswordRequestForm
 
-from app1.models.users import User as UserModel
-from app1.db_depends import get_async_db
-from app1.auth import hash_password, verify_password, create_access_token, create_refresh_token
-from app1.config import SECRET_KEY, ALGORITHM
-from app1.schemas import UserCreate, User as UserSchema, RefreshTokenRequest
+from app.models.users import User as UserModel
+from app.db_depends import get_async_db
+from app.auth import hash_password, verify_password, create_access_token, create_refresh_token
+from app.config import SECRET_KEY, ALGORITHM
+from app.schemas import UserCreate, User as UserSchema, RefreshTokenRequest
 
 import jwt
 

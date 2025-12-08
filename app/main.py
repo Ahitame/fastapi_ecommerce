@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 
-from app1.routers import categories, products, users
+from app.routers import categories, products, users
 
 
 # Создаём приложение FastAPI
