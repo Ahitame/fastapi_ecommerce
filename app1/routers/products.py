@@ -2,15 +2,15 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy import select, update
 from sqlalchemy.orm import Session
 
-from app.models.products import Product as ProductModel
-from app.models.categories import Category as CategoryModel
-from app.models.users import User as UserModel
-from app.auth import get_current_seller
-from app.schemas import Product as ProductSchema, ProductCreate
-from app.db_depends import get_db
+from app1.models.products import Product as ProductModel
+from app1.models.categories import Category as CategoryModel
+from app1.models.users import User as UserModel
+from app1.auth import get_current_seller
+from app1.schemas import Product as ProductSchema, ProductCreate
+from app1.db_depends import get_db
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.db_depends import get_async_db
+from app1.db_depends import get_async_db
 
 # Создаём маршрутизатор для товаров
 router = APIRouter(
