@@ -12,6 +12,7 @@ from app.auth import get_current_seller, get_current_buyer, get_current_admin
 from app.schemas import Product as ProductSchema, ProductCreate
 from app.db_depends import get_db
 
+from app.routers.suppotring_functions import update_product_rating
 from app.models.reviews import Review as ReviewModel
 
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -76,11 +77,7 @@ async def create_review(review: ReviewCreate, db: AsyncSession = Depends(get_asy
     await db.refresh(new_review)
 
     # Обновление рейтинга
-    avg_rating_old = await db.scalars(select(ReviewModel.grade).where(ReviewModel.product_id == new_review.product_id, ReviewModel.is_active == True))
-    avg_rating_new = round((sum(avg_rating_old.all())) / len(avg_rating_old.all()), 2)
-
-    await db.execute(update(ProductModel).where(ProductModel.id == new_review.product_id).values(rating=avg_rating_new))
-    await db.commit()
+    await update_product_rating(db, review.product_id)
 
     return new_review
 
@@ -95,6 +92,7 @@ async def delete_review(review_id: int, db: AsyncSession = Depends(get_async_db)
     if not review_result:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail='Review not found or inactive')
 
+
     # Удаление отзыва
     await db.execute(update(ReviewModel).where(ReviewModel.id == review_id).values(is_active=False))
 
@@ -102,11 +100,7 @@ async def delete_review(review_id: int, db: AsyncSession = Depends(get_async_db)
     await db.refresh(review_result)
 
     # Обновление рейтинга
-    grades = await db.scalars(select(ReviewModel.grade).where(ReviewModel.product_id == review_result.product_id, ReviewModel.is_active == True))
-    rating_new = round(sum(grades.all()) / len(grades.all()), 2)
-
-    await db.execute(update(ProductModel).where(ProductModel.id == review_result.product_id).values(rating=rating_new))
-    await db.commit()
+    await update_product_rating(db, review_result.product_id)
 
     return {"message": "Review deleted"}
 
