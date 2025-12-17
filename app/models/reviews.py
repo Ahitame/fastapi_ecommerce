@@ -14,8 +14,8 @@ class Review(Base):
     __tablename__ = "reviews"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    user_id: Mapped[int] = mapped_column(Integer, ForeignKey('buyer'))
-    product_id: Mapped[int] = mapped_column(Integer, ForeignKey('products'))
+    user_id: Mapped[int] = mapped_column(Integer, ForeignKey('users.id'))
+    product_id: Mapped[int] = mapped_column(Integer, ForeignKey('products.id'))
     comment: Mapped[str | None] = mapped_column(Text, nullable=True)
     comment_date: Mapped[datetime] = mapped_column(DateTime, default=datetime.now)
     grade: Mapped[int] = mapped_column(Integer, nullable=False)
