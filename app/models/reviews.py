@@ -1,9 +1,8 @@
-from decimal import Decimal
-from datetime import datetime
-
-from sqlalchemy import String, Boolean, Integer, Numeric, Text, DateTime, between
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy import Boolean, Integer, Text, DateTime
+from sqlalchemy.orm import Mapped, mapped_column
 from sqlalchemy import ForeignKey
+
+from datetime import datetime
 
 from app.database import Base
 

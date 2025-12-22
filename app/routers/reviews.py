@@ -6,7 +6,7 @@ from app.schemas import Review as ReviewSchema, ReviewCreate
 from app.models.users import User as UserModel
 from app.auth import get_current_buyer, get_current_admin
 
-from app.routers.suppotring_functions import update_product_rating
+from app.routers.supporting_functions import update_product_rating
 from app.models.reviews import Review as ReviewModel
 
 from sqlalchemy.ext.asyncio import AsyncSession

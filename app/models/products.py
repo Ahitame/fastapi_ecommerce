@@ -1,8 +1,9 @@
-from decimal import Decimal
 from sqlalchemy import String, Boolean, Integer, Numeric, Computed, Index, Float, text
 from sqlalchemy.dialects.postgresql import TSVECTOR
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from sqlalchemy import ForeignKey
+
+from decimal import Decimal
 
 from app.database import Base
 
@@ -36,10 +37,10 @@ class Product(Base):
 
     category: Mapped["Category"] = relationship("Category", back_populates="products")
     seller = relationship("User", back_populates="products")
+    cart_items: Mapped[list["CartItem"]] = relationship("CartItem", back_populates="product", cascade="all, delete-orphan")
+    order_items: Mapped[list["OrderItem"]] = relationship("OrderItem", back_populates="product")
 
-    __table_args__ = (
-        Index("ix_products_tsv_gin", "tsv", postgresql_using="gin"),
-    )
+    __table_args__ = (Index("ix_products_tsv_gin", "tsv", postgresql_using="gin"),)
 
 
 
