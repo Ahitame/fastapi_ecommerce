@@ -10,8 +10,6 @@ REST API интернет-магазина на FastAPI и PostgreSQL.
 ```powershell
 git clone https://github.com/Ahitame/fastapi_ecommerce.git
 cd fastapi_ecommerce
-py -3.13 -m venv .venv
-.\.venv\Scripts\Activate.ps1
 python -m pip install -r requirements.txt
 ```
 
