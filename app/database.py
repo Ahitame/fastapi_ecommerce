@@ -8,7 +8,7 @@ from app.config import DATABASE_URL
 SQLITE_DATABASE_URL = "sqlite:///ecommerce.db"
 
 # Создаём Engine
-engine = create_engine(DATABASE_URL, echo=True)
+engine = create_engine(SQLITE_DATABASE_URL, echo=True)
 
 # Настраиваем фабрику сеансов
 SessionLocal = sessionmaker(bind=engine)

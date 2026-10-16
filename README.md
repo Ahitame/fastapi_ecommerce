@@ -28,3 +28,21 @@ python -m uvicorn app.main:app --reload
 ```
 
 Посмотреть документацию и выполнить проверку API: http://127.0.0.1:8000/docs
+
+## Запуск через Docker
+
+Требуется установленный Docker Desktop.
+
+```powershell
+git clone https://github.com/Ahitame/fastapi_ecommerce.git
+cd fastapi_ecommerce
+```
+
+Создайте файл `.env`.
+
+```powershell
+docker compose up --build -d
+```
+
+
+

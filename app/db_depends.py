@@ -1,14 +1,14 @@
-from sqlalchemy.orm import Session
-
-from app.database import SessionLocal
-
-
-async def get_db():
-    db: Session = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# from sqlalchemy.orm import Session
+#
+# from app.database import SessionLocal
+#
+#
+# async def get_db():
+#     db: Session = SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 
 # --------------- Асинхронная сессия -------------------------
